@@ -1,0 +1,67 @@
+.hidden {
+    display: none !important;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    cursor: pointer;
+}
+
+.canvas-overlay{
+    background-color: transparent;
+    width: 100%; 
+    height: 100vh;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    position:absolute;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+}
+
+.overlay-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-text span{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+.overlay-score{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.overlay-score span{
+    color: white;
+    font-size: 45px;
+}
+
+.overlay-score table {
+    width: 50%;
+    border: 2px solid white;
+    text-align: center;
+    padding: 5px;
+    color: white;
+}

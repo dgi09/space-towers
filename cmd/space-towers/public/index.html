@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Space Towers</title>
+</head>
+
+<body>
+    <img id="imgCards" src="assets/cards.png" class="hidden">
+
+    <div id="stageAttemptingConnect">
+        Attempting to connect to server...
+    </div>
+
+    <div id="stageEnterDetails" class="hidden">
+        <label>Enter your name</label>
+        <input type="text" id="inputName" placeholder="Name">
+        <button id="btnEnterDetails" onclick="onEnterDetailsClicked()">Enter</button>
+    </div>
+
+    <div id="stageControlls" class="hidden">
+        <button onclick="onQueueForGameClicked()">Queue For Game</button>
+
+        <div>
+            <label>Create room</label>
+            <input type="text" id="inputCreateRoomName" placeholder="Room name">
+            <button id="btnCreateRoom" onclick="onCreateRoomClicked()">Create</button>
+        </div>
+
+        <div>
+            <label>Join room</label>
+            <input type="text" id="inputJoinRoomName" placeholder="Room name">
+            <button id="btnJoinRoom" onclick="onJoinRoomClicked()">Join</button>
+        </div>
+    </div>
+    <div id="stageGame" class="game-container">
+        <canvas id="canvas" width="960" height="540">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
+
+        <div id="canvas-overlay" class="canvas-overlay">
+            <div id="overlay-round-finished" class="overlay text-overlay hidden">
+                <span>Good job ! Round finished. Waiting for other players...</span>
+            </div>
+
+            <div id="overlay-waiting-for-other-players" class="overlay text-overlay hidden">
+                <span>Waiting for other players...</span>
+            </div>
+
+            <div id="overlay-awaiting-round-start" class="overlay overlay-score hidden">
+                <span id="olsTitle">Score</span>
+                <table>
+
+                    <head>
+                        <tr>
+                            <th>Player</th>
+                            <th>Score</th>
+                        </tr>
+                    </head>
+
+                    <body>
+                        <tr>
+                            <td id="olPlayer1Name"></td>
+                            <td id="olPlayer1Score"></td>
+                        </tr>
+                        <tr>
+                            <td id="olPlayer2Name"></td>
+                            <td id="olPlayer2Score"></td>
+                        </tr>
+                    </body>
+                </table>
+
+                <button id="btnStartRound">Start Round</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="ws.js"></script>
+    <script src="ctrl.js"></script>
+    <script src="ui.js"></script>
+    <script src="game.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            let host = "ws://192.168.100.9:8080/ws";//192.168.100.9
+            ws = new Ws(host);
+            ws.onOpen(onConnectedToServer)
+            ws.onReady(onReady)
+            ws.onPrepareGame(onPrepareGame)
+        });
+    </script>
+</body>
+
+</html>
